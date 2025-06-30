@@ -34,9 +34,16 @@ const Technologies = ({ title, Icon }: { title: string; Icon: React.ComponentTyp
     <Icon />
   </div>
 );
+
+const ToolStack = ({ title, Icon }: { title: string; Icon: React.ComponentType }) => (
+  <div title={title} className="hover:text-green-500 hover:transition ease-in border-b-2  shadow p-2 rounded-full">
+    <Icon />
+  </div>
+);
+
+
 const Portifolio = () => {
 
-  
   return (
     <section className="space-y-4">
     <Card className="p-8 rounded-none rounded-tr-4xl ">
@@ -85,12 +92,14 @@ const Portifolio = () => {
       <CardContent>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
         {technologies.map(({ title, status, icon: Icon }, index) => (
-          <Card key={index} className="flex flex-col items-center justify-center p-4 shadow hover:shadow-lg transition rounded-xl">
+          <Card key={index} className="flex flex-row items-center justify-center p-4 shadow hover:shadow-lg transition rounded-xl">
             <div className="text-green-500 mb-2">
-            <Icon className="w-8 h-8" />
+            <Icon className="w-6 h-6" />
             </div>
             <p className="font-semibold">{title}</p>
-            <p className="text-sm text-muted-foreground border rounded-lg">{status}%</p>
+            <Badge variant={"outline"} className="text-sm text-muted-foreground">
+              {status}%
+            </Badge>
           </Card>
         ))}
       </div>
@@ -112,7 +121,25 @@ const Portifolio = () => {
           <Button variant="link"></Button>
         </CardAction>
       </CardHeader>
+        <CardContent>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
+        {toolStack.map(({ title, status, icon: Icon }, index) => (
+          <Card key={index} className="flex flex-col items-center justify-center p-4 shadow hover:shadow-lg transition rounded-xl">
+            <div className="border-5 size-20 p-5 rounded-full items-center justify-between">
+              <div className="text-green-500 mb-2">
+              <Icon className="w-6 h-6" />
+              <p  className="text-sm text-muted-foreground">
+                {status}%
+              </p>
+              </div>
+            </div>
+              <p className="font-semibold">{title}</p>
+          </Card>
+        ))}
+      </div>
+      </CardContent>
     </Card>
+    
 
 </section>
     
